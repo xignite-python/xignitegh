@@ -7,7 +7,7 @@ requirements = ["requests>=2"]
 
 setup(
     name="xignitegh",
-    version="0.0.1",
+    version="0.0.2",
     author="Kapitalisman",
     author_email="hallo@kapitalisman.nl",
     license="MIT",
