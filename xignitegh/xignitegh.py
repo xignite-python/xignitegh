@@ -33,7 +33,7 @@ class Xignite(object):
             "EndDate": Xignite._get_date(years_ago=0),
             "_token": self.token,
         }
-        if self._token_userid:
+        if self.userid:
             params["_token_userid"] = self.userid
 
         url = Xignite._XIGNITE_API_URL + Xignite._XIGNITE_QUOTES_RANGE
@@ -52,7 +52,7 @@ class Xignite(object):
             "EndDate": Xignite._get_date(years_ago=0),
             "_token": self.token,
         }
-        if self._token_userid:
+        if self.userid:
             params["_token_userid"] = self.userid
 
         url = Xignite._XIGNITE_API_URL + Xignite._XIGNITE_CASH_DIVIDEND_HISTORY
