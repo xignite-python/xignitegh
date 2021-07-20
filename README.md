@@ -15,3 +15,21 @@ To install the package use:
 ```shell
 pip install xignitegh
 ```
+
+## Usage
+```python
+from xignitegh import Xignite
+
+xgh = Xignite(_token="YOUR_TOKEN", _token_userid="YOUR_USERID")
+params = {
+    "IdentifierType": "Symbol",
+    "Identifier": "AAPL",
+    "IdentifierAsOfDate": "",
+    "AdjustmentMethod": "All",
+    "StartDate": "7/20/2020",
+    "EndDate": "7/20/2021",
+}
+quotes = xgh.get_quotes(**params)
+if quotes["Outcome"] == "Success":
+    pass
+```
