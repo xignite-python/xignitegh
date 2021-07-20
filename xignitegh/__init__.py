@@ -1,1 +1,1 @@
-from .xignitegh import hallo
+from .xignitegh import Xignite

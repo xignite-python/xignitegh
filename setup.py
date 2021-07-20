@@ -7,7 +7,7 @@ requirements = ["requests>=2"]
 
 setup(
     name="xignitegh",
-    version="0.0.2",
+    version="0.1.0",
     author="Kapitalisman",
     author_email="hallo@kapitalisman.nl",
     license="MIT",
@@ -19,7 +19,7 @@ setup(
     packages=find_packages(),
     install_requires=requirements,
     classifiers=[
-        "Development Status :: 1 - Planning",
+        "Development Status :: 2 - Pre-Alpha",
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3.7",
     ],
