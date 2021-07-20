@@ -1,5 +1,6 @@
 # XigniteGH
 
+![Release](https://github.com/xignite-python/xignitegh/actions/workflows/python-publish.yml/badge.svg)
 [![PyPI version](https://badge.fury.io/py/xignitegh.svg)](https://badge.fury.io/py/xignitegh)
 
 *Python module to get historical stock data from the XigniteGlobalHistorical API*
