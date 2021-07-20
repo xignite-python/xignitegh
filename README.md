@@ -29,7 +29,7 @@ params = {
     "StartDate": "7/20/2020",
     "EndDate": "7/20/2021",
 }
-quotes = xgh.get_quotes(**params)
+quotes = xgh.get_quotes(params=params)
 if quotes["Outcome"] == "Success":
     pass
 ```
