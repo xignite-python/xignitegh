@@ -1,12 +1,14 @@
-from datetime import date, timedelta
 import os
+from datetime import date, timedelta
+
 import requests
 
 
 class Xignite(object):
 
     _XIGNITE_API_URL = "https://globalhistorical.xignite.com/v3/"
-    _XIGNITE_GH = "xGlobalHistorical.json/GetGlobalHistoricalQuotesRange"
+    _XIGNITE_QUOTES_RANGE = "xGlobalHistorical.json/GetGlobalHistoricalQuotesRange"
+    _XIGNITE_CASH_DIVIDEND_HISTORY = "xGlobalHistorical.json/GetCashDividendHistory"
 
     def __init__(self, _token=None, _token_userid=None):
 
@@ -14,30 +16,48 @@ class Xignite(object):
             _token = os.environ.get("XIGNITE_TOKEN")
         if not _token or not isinstance(_token, str):
             raise ValueError("The Xignite token must be provided")
-        self._token = _token
+        self.token = _token
 
-        if _token_userid is None:
-            _token_userid = os.environ.get("XIGNITE_USERID")
         if not (_token_userid is None or isinstance(_token_userid, int)):
             raise ValueError("The Xignite userid must be a number")
-        self._token_userid = _token_userid
+        self.userid = _token_userid
 
-    def get_quotes(self, params={}):
+    def get_quotes(self, ticker: str, years: int):
 
-        if not params:
-            params = {
-                "IdentifierType": "Symbol",
-                "Identifier": "AAPL",
-                "IdentifierAsOfDate": "",
-                "AdjustmentMethod": "All",
-                "StartDate": Xignite._get_date(years_ago=1),
-                "EndDate": Xignite._get_date(years_ago=0),
-            }
-        params["_token"] = self._token
+        params = {
+            "IdentifierType": "Symbol",
+            "Identifier": ticker,
+            "IdentifierAsOfDate": "",
+            "AdjustmentMethod": "All",
+            "StartDate": Xignite._get_date(years_ago=years),
+            "EndDate": Xignite._get_date(years_ago=0),
+            "_token": self.token,
+        }
         if self._token_userid:
-            params["_token_userid"] = self._token_userid
-        url = Xignite._XIGNITE_API_URL + Xignite._XIGNITE_GH
+            params["_token_userid"] = self.userid
+
+        url = Xignite._XIGNITE_API_URL + Xignite._XIGNITE_QUOTES_RANGE
         response = requests.get(url=url, params=params)
+
+        return response.json()
+
+    def get_dividends(self, ticker: str, years: int):
+
+        params = {
+            "IdentifierType": "Symbol",
+            "Identifier": ticker,
+            "IdentifierAsOfDate": "",
+            "CorporateActionsAdjusted": "True",
+            "StartDate": Xignite._get_date(years_ago=years),
+            "EndDate": Xignite._get_date(years_ago=0),
+            "_token": self.token,
+        }
+        if self._token_userid:
+            params["_token_userid"] = self.userid
+
+        url = Xignite._XIGNITE_API_URL + Xignite._XIGNITE_CASH_DIVIDEND_HISTORY
+        response = requests.get(url=url, params=params)
+
         return response.json()
 
     def _get_date(years_ago):

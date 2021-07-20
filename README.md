@@ -18,18 +18,18 @@ pip install xignitegh
 
 ## Usage
 ```python
+import pandas as pd
 from xignitegh import Xignite
 
-xgh = Xignite(_token="YOUR_TOKEN", _token_userid="YOUR_USERID")
-params = {
-    "IdentifierType": "Symbol",
-    "Identifier": "AAPL",
-    "IdentifierAsOfDate": "",
-    "AdjustmentMethod": "All",
-    "StartDate": "7/20/2020",
-    "EndDate": "7/20/2021",
-}
-quotes = xgh.get_quotes(params=params)
+xgh = Xignite(_token="TOKEN", _token_userid=USERID)
+
+quotes = xgh.get_quotes(ticker="AAPL", years=1)
 if quotes["Outcome"] == "Success":
-    pass
+    name = quotes["Security"]["Name"]
+
+dividends = xgh.get_dividends(ticker="AAPL", years=1)
+if dividends["Outcome"] == "Success":
+    df = pd.json_normalize(dividends["CashDividends"])
 ```
+
+The token may also be stored in the environment variable ``XIGNITE_TOKEN``. The token userid is optional and used only with encrypted tokens.
