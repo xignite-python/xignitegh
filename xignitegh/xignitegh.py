@@ -1,2 +1,2 @@
 def hallo(name):
-    print(f'Hallo, {name}.')
+    print(f"Hallo, {name}.")
