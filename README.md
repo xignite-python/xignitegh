@@ -1,7 +1,10 @@
 # XigniteGH
 
-![Release](https://github.com/xignite-python/xignitegh/actions/workflows/python-publish.yml/badge.svg)
-[![PyPI version](https://badge.fury.io/py/xignitegh.svg)](https://badge.fury.io/py/xignitegh)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/xignite-python/xignitegh/release)
+![PyPI](https://img.shields.io/pypi/v/xignitegh)
+![GitHub last commit](https://img.shields.io/github/last-commit/xignite-python/xignitegh)
+![GitHub issues](https://img.shields.io/github/issues/xignite-python/xignitegh)
+![GitHub](https://img.shields.io/github/license/xignite-python/xignitegh)
 
 *Python module to get historical stock data from the XigniteGlobalHistorical API*
 
